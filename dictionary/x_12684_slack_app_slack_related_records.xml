@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Slack Related Records" max_length="40" name="x_12684_slack_app_slack_related_records" type="collection">
+        <element attributes="edge_encryption_enabled=true" default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Channel History" max_length="100000" name="channel_history" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Slack Group ID" max_length="40" name="slack_group_id" type="string"/>
+        <element label="Ticket" max_length="40" name="task" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Approval action" max_length="40" name="u_approval_action" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Approved" value="approved"/>
+                <element inactive_on_update="false" label="Rejected" value="rejected"/>
+            </choice>
+        </element>
+        <element label="Approval record sys id" max_length="40" name="u_approval_record_sys_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Approval user" max_length="32" name="u_approved_by" reference="x_12684_slack_app_user_mapper" type="reference"/>
+        <element label="Channel History Formatted" max_length="4000" name="u_channel_history_formatted" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Responded on" max_length="40" name="u_responded_on" type="glide_date_time"/>
+        <element attributes="base_start=true,edge_encryption_enabled=true" label="Table" max_length="80" name="u_table" type="table_name"/>
+        <element label="Ticket Sys ID" max_length="40" name="u_ticket_sys_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Type" max_length="40" name="u_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Approval Interactive Message" value="interactive_message"/>
+                <element inactive_on_update="false" label="Channel" value="channel"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="u_approved_by"/>
+        </index>
+    </element>
+</database>

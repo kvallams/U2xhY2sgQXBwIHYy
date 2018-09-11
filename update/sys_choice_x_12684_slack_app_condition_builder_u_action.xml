@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="u_action" table="x_12684_slack_app_condition_builder" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_action</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Push Approval</label>
+            <language>en</language>
+            <name>x_12684_slack_app_condition_builder</name>
+            <sequence/>
+            <sys_created_by>kvallams</sys_created_by>
+            <sys_created_on>2017-09-07 22:01:31</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>b03f9b39db850300378fd450cf96194e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>kvallams</sys_updated_by>
+            <sys_updated_on>2017-09-07 22:01:31</sys_updated_on>
+            <value>approval</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_action</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Close Channel</label>
+            <language>en</language>
+            <name>x_12684_slack_app_condition_builder</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-06-20 21:27:10</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>30c1e828db233200378fd450cf961943</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-06-22 21:44:11</sys_updated_on>
+            <value>close_channel</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_action</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Create Channel</label>
+            <language>en</language>
+            <name>x_12684_slack_app_condition_builder</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-06-20 21:26:54</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d2b1a028db233200378fd450cf96196b</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-06-22 21:44:05</sys_updated_on>
+            <value>create_channel</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>u_action</element>
+            <name>x_12684_slack_app_condition_builder</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-06-20 21:26:54</sys_created_on>
+            <sys_id>10e713a4db602300ec3358b3ca961900</sys_id>
+            <sys_mod_count>8</sys_mod_count>
+            <sys_name>u_action</sys_name>
+            <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+            <sys_update_name>sys_choice_x_12684_slack_app_condition_builder_u_action</sys_update_name>
+            <sys_updated_by>Kalyan.Vallamsetla@ucop.edu</sys_updated_by>
+            <sys_updated_on>2018-01-26 02:15:54</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

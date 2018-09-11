@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity_profile">
+    <oauth_entity_profile action="INSERT_OR_UPDATE">
+        <default>true</default>
+        <grant_type>client_credentials</grant_type>
+        <name>Slack App default_profile</name>
+        <oauth_entity display_value="Slack App">d948f83cdb300300378fd450cf961920</oauth_entity>
+        <sys_class_name>oauth_entity_profile</sys_class_name>
+        <sys_created_by>kvallams</sys_created_by>
+        <sys_created_on>2017-08-22 21:04:47</sys_created_on>
+        <sys_id>7ad83078db300300378fd450cf961949</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Slack App default_profile</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>oauth_entity_profile_7ad83078db300300378fd450cf961949</sys_update_name>
+        <sys_updated_by>kvallams</sys_updated_by>
+        <sys_updated_on>2017-08-22 21:04:47</sys_updated_on>
+    </oauth_entity_profile>
+</record_update>

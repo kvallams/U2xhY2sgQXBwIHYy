@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var app = angular.module("slackChannel", []);
+app.config(['$locationProvider', function($locationProvider){
+	$locationProvider.html5Mode({
+		enabled: true,
+		requireBase: false
+	});
+}]);
+app.controller("slackChannelCntrl", function($scope,$http,$location) {
+	var parent_g_form = window.parent.g_form;
+	var task_sys_id= parent_g_form.getUniqueValue();
+	$scope.init = function(){
+		var ga = new GlideAjax('SlackAppUIHelper');
+		ga.addParam('sysparm_name','getChannelHistory');
+		ga.addParam('sysparam_param_taskSysID',task_sys_id);
+		ga.getXML(function(response){
+		$scope.channel_history=JSON.parse(response.responseXML.documentElement.getAttribute("answer"));
+			$scope.$apply();
+		});
+		
+	};
+});]]></client_script>
+        <description>UI page included in slack_channel_history UI macro</description>
+        <direct>false</direct>
+        <endpoint>x_12684_slack_app_Slack Channel History.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+<style>
+	th, td {
+    padding: 4px;
+    text-align: left;
+}
+</style>	
+<div ng-app="slackChannel" ng-controller="slackChannelCntrl" ng-init="init()">
+<div class="ng-cloak">	
+<div ng-if="channel_history != null">
+  <table>
+    <tr ng-repeat="x in channel_history">
+		<div ng-if="x.type == 'message'">
+			<td width ="30%"><b>
+			{{x.user}}:          
+			</b></td>
+			<td width ="40%"><i>
+				{{x.text}} 
+				</i></td>
+			<td width ="30%">{{x.ts}}
+			</td>	
+		</div>
+	</tr>
+  </table>
+</div>
+<div ng-if="channel_history == null">
+	<p><h3><b>There is no history associated with this record yet!</b></h3></p>
+</div>	
+</div>	
+</div>
+</j:jelly>]]></html>
+        <name>Slack Channel History</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-07-18 17:25:15</sys_created_on>
+        <sys_id>c9a63311db480300378fd450cf9619d2</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>Slack Channel History</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_ui_page_c9a63311db480300378fd450cf9619d2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-07-25 23:20:19</sys_updated_on>
+    </sys_ui_page>
+</record_update>

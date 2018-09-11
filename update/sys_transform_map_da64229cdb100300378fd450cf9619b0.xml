@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_transform_map">
+    <sys_transform_map action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copy_empty_fields>false</copy_empty_fields>
+        <enforce_mandatory_fields>No</enforce_mandatory_fields>
+        <name>Slack User Mapper transform map</name>
+        <order>100</order>
+        <run_business_rules>true</run_business_rules>
+        <run_script>false</run_script>
+        <script><![CDATA[(function transformRow(source, target, map, log, isUpdate) {
+
+	// Add your code here
+
+})(source, target, map, log, action==="update");]]></script>
+        <source_table>x_12684_slack_app_slack_user_mapper_importset</source_table>
+        <sys_class_name>sys_transform_map</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-07-27 19:06:48</sys_created_on>
+        <sys_id>da64229cdb100300378fd450cf9619b0</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Slack User Mapper transform map</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_transform_map_da64229cdb100300378fd450cf9619b0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-07-27 19:07:42</sys_updated_on>
+        <target_table>x_12684_slack_app_user_mapper</target_table>
+    </sys_transform_map>
+</record_update>

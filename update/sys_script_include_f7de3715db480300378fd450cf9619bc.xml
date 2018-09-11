@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_12684_slack_app.SlackAppUIHelper</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>SlackAppUIHelper</name>
+        <script><![CDATA[var SlackAppUIHelper = Class.create();
+SlackAppUIHelper.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	getChannelHistory: function(){
+		var json = new global.JSON();
+		var channel_history;
+		var sys_id = this.getParameter('sysparam_param_taskSysID');
+		var gr = new GlideRecord('x_12684_slack_app_slack_related_records');
+		gr.addEncodedQuery('active=false^u_ticket_sys_id='+sys_id);
+		gr.query();
+		if(gr.next()){
+			if(gr.u_channel_history_formatted == ''){
+				channel_history = gr.channel_history;
+				if(channel_history!=''){
+					var channel_history_obj = json.decode(channel_history);
+					for(var i=0;i<channel_history_obj.length;i++){
+						if(channel_history_obj[i].type == 'message'){
+							var gr_user_mapper = new GlideRecord('x_12684_slack_app_user_mapper');						gr_user_mapper.addEncodedQuery('^u_slack_user_id='+channel_history_obj[i].user);
+							gr_user_mapper.query();
+							if(gr_user_mapper.next()){
+								channel_history_obj[i].user = gr_user_mapper.getDisplayValue('u_user');
+								
+							}
+						}
+						var date = new Date(channel_history_obj[i].ts * 1000);
+						channel_history_obj[i].ts = date;
+					}
+					gr.u_channel_history_formatted = json.encode(channel_history_obj);
+					gr.update();
+				}
+			}
+		}
+		return gr.u_channel_history_formatted;
+	},
+	
+	type: 'SlackAppUIHelper'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-07-18 18:00:00</sys_created_on>
+        <sys_id>f7de3715db480300378fd450cf9619bc</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>SlackAppUIHelper</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_script_include_f7de3715db480300378fd450cf9619bc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-07-25 23:17:58</sys_updated_on>
+    </sys_script_include>
+</record_update>

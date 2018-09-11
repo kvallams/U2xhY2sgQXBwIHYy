@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_import_set_row" label="Slack User Mapper Importset" max_length="40" name="x_12684_slack_app_slack_user_mapper_importset" type="collection">
+        <element attributes="import_attribute_name=email,edge_encryption_enabled=true" label="email" max_length="40" name="u_email" type="string"/>
+        <element attributes="import_attribute_name=first_name,edge_encryption_enabled=true" label="first_name" max_length="40" name="u_first_name" type="string"/>
+        <element attributes="import_attribute_name=id,edge_encryption_enabled=true" label="id" max_length="40" name="u_id" type="string"/>
+        <element attributes="import_attribute_name=is_bot,edge_encryption_enabled=true" label="is_bot" max_length="40" name="u_is_bot" type="string"/>
+        <element attributes="import_attribute_name=last_name,edge_encryption_enabled=true" label="last_name" max_length="40" name="u_last_name" type="string"/>
+        <element attributes="import_attribute_name=name,edge_encryption_enabled=true" label="name" max_length="40" name="u_name" type="string"/>
+        <element attributes="import_attribute_name=real_name,edge_encryption_enabled=true" label="real_name" max_length="40" name="u_real_name" type="string"/>
+        <element attributes="import_attribute_name=team_id,edge_encryption_enabled=true" label="team_id" max_length="40" name="u_team_id" type="string"/>
+    </element>
+</database>

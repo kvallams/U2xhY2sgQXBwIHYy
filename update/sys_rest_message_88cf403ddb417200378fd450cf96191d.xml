@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message">
+    <sys_rest_message action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <authentication_type>oauth2</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <description/>
+        <name>Slack App Authorization request</name>
+        <oauth2_profile/>
+        <protocol_name/>
+        <rest_endpoint>https://slack.com/oauth/authorize</rest_endpoint>
+        <sys_class_name>sys_rest_message</sys_class_name>
+        <sys_created_by>kvallams</sys_created_by>
+        <sys_created_on>2017-02-20 10:43:39</sys_created_on>
+        <sys_id>88cf403ddb417200378fd450cf96191d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Slack App Authorization request</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_rest_message_88cf403ddb417200378fd450cf96191d</sys_update_name>
+        <sys_updated_by>kvallams</sys_updated_by>
+        <sys_updated_on>2017-02-20 10:43:39</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message>
+</record_update>

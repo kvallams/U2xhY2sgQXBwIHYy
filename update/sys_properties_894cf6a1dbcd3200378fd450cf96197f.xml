@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices>https://slack.com/api/oauth.access</choices>
+        <description>Oauth token issuing URL</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_12684_slack_app.TokenUrl</name>
+        <read_roles/>
+        <suffix>TokenUrl</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>kvallams</sys_created_by>
+        <sys_created_on>2017-02-20 04:39:49</sys_created_on>
+        <sys_id>894cf6a1dbcd3200378fd450cf96197f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_12684_slack_app.TokenUrl</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_properties_894cf6a1dbcd3200378fd450cf96197f</sys_update_name>
+        <sys_updated_by>kvallams</sys_updated_by>
+        <sys_updated_on>2017-02-20 04:39:49</sys_updated_on>
+        <type>string</type>
+        <value>https://slack.com/api/oauth.access</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=894cf6a1dbcd3200378fd450cf96197f"/>
+</record_update>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Sync Slack Users with ServiceNow user profiles</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2017-07-26 18:45:34</run_start>
+        <run_time>1970-01-01 08:00:00</run_time>
+        <run_type>on_demand</run_type>
+        <script><![CDATA[(function(){
+	try{
+		var slack_helper =  new x_12684_slack_app.SlackAppHelper();
+	var cursor='';
+	var final_members=[];
+	do{
+		var result = slack_helper.json.decode(slack_helper.syncSlackUsers(cursor));
+		var members = result.members;
+		cursor = result.response_metadata.next_cursor;
+		final_members = slack_helper.arrayUtil.union(final_members,members);
+	}while(cursor!='');
+	gs.debug('SyncSlackUsersSecheduledJob::final_members_length::'+final_members.length);
+	//add records in importset table.
+	for(var i=0; i< final_members.length;i++){
+		if(!final_members[i].is_bot){
+			var gr = new GlideRecord('x_12684_slack_app_slack_user_mapper_importset');
+			gr.u_name = final_members[i].name;
+			gr.u_email = final_members[i].profile.email;
+			gr.u_id = final_members[i].id;
+			gr.u_team_id = final_members[i].team_id;
+			gr.u_first_name = final_members[i].profile.first_name;
+			gr.u_last_name =  final_members[i].profile.last_name;
+			gr.u_real_name = final_members[i].profile.real_name;
+			gr.insert();
+		}
+		
+	}
+		
+	}
+	catch(ex){
+		gs.error('ScheduledJob::Sync Slack Users with ServiceNow user profiles::error::'+ex);
+		}
+	
+	
+})();
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-07-26 20:01:57</sys_created_on>
+        <sys_id>58161d00db500300378fd450cf961932</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Sync Slack Users with ServiceNow user profiles</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sysauto_script_58161d00db500300378fd450cf961932</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-09-11 17:34:58</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

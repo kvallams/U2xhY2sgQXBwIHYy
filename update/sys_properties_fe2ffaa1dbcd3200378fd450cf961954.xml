@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices>incoming\-webhook,commands,bot</choices>
+        <description>Slack app scopes see documentation for further info</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_12684_slack_app.scopes</name>
+        <read_roles/>
+        <suffix>scopes</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>kvallams</sys_created_by>
+        <sys_created_on>2017-02-20 04:53:25</sys_created_on>
+        <sys_id>fe2ffaa1dbcd3200378fd450cf961954</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>x_12684_slack_app.scopes</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_properties_fe2ffaa1dbcd3200378fd450cf961954</sys_update_name>
+        <sys_updated_by>kvallams</sys_updated_by>
+        <sys_updated_on>2017-08-22 21:34:31</sys_updated_on>
+        <type>string</type>
+        <value>incoming-webhook,commands </value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=fe2ffaa1dbcd3200378fd450cf961954"/>
+</record_update>

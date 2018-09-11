@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="u_fields_to_be_added_to_channel" label="Fields to be added to channel" language="en" table="x_12684_slack_app_condition_builder">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>u_fields_to_be_added_to_channel</element>
+            <help>Specify the list of fields which need to be posted on to the channel</help>
+            <hint>Specify the list of fields which need to be posted on to the channel</hint>
+            <label>Fields to be added to channel</label>
+            <language>en</language>
+            <name>x_12684_slack_app_condition_builder</name>
+            <plural>Fields to be added to channels</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-07-25 18:00:49</sys_created_on>
+            <sys_id>fa32043fdbc40300378fd450cf961911</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Fields to be added to channel</sys_name>
+            <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+            <sys_update_name>sys_documentation_x_12684_slack_app_condition_builder_u_fields_to_be_added_to_channel_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-07-25 18:16:58</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

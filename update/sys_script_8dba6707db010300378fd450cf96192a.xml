@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_12684_slack_app_slack_related_records</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_12684_slack_app_slack_related_records">u_type=interactive_message^EQ<item endquery="false" field="u_type" goto="false" newquery="false" operator="=" or="false" value="interactive_message"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Push approvals to slack</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	// Add your code here
+	var approvalAction = {};
+	var approveAction={};
+	var rejectAction={};
+	var slackHelper = new x_12684_slack_app.SlackAppHelper();
+	var gr = new GlideRecord(current.u_table);
+	gr.get('sys_id',current.u_ticket_sys_id);
+	var message = slackHelper.generatePostMessage(gr,'approval');
+	approvalAction.text = "Approval Request for: "+gr.number;
+	approvalAction.fallback = 'You are unable to approve please contact ServiceNow admins';
+	approvalAction.callback_id = current.u_approval_record_sys_id.toString();
+	approvalAction.color = '#3AA3E3';
+	approvalAction.attachment_type = "default";
+	approveAction.name = 'approval';
+	approveAction.text = 'Approve';
+	approveAction.type = 'button';
+	approveAction.value = 'approved';
+	rejectAction.name = 'approval';
+	rejectAction.text = 'Reject';
+	rejectAction.type = 'button';
+	rejectAction.value = 'rejected';
+	approvalAction.actions=[];
+	approvalAction.actions.push(approveAction);
+	approvalAction.actions.push(rejectAction);
+	message.attachments.push(approvalAction);
+	slackHelper.postMessage(message,'@'+current.u_approved_by.u_slack_user_name);
+	gs.debug('SlackApp::Approval pushed to slack'+slackHelper.logger.join());
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>kvallams</sys_created_by>
+        <sys_created_on>2017-09-11 20:06:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>8dba6707db010300378fd450cf96192a</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Push approvals to slack</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_script_8dba6707db010300378fd450cf96192a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-07 19:48:29</sys_updated_on>
+        <template/>
+        <when>async</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=8dba6707db010300378fd450cf96192a"/>
+</record_update>
