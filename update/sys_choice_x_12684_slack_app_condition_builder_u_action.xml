@@ -57,13 +57,32 @@
             <sys_updated_on>2017-06-22 21:44:05</sys_updated_on>
             <value>create_channel</value>
         </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_action</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Push Notification</label>
+            <language>en</language>
+            <name>x_12684_slack_app_condition_builder</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-12-18 22:02:02</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>10dd901cdbe62700807128df4b9619aa</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-12-18 22:02:07</sys_updated_on>
+            <value>notify</value>
+        </sys_choice>
         <sys_choice_set action="INSERT_OR_UPDATE">
             <element>u_action</element>
             <name>x_12684_slack_app_condition_builder</name>
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2017-06-20 21:26:54</sys_created_on>
-            <sys_id>04c81fe4db602300ec3358b3ca961985</sys_id>
+            <sys_id>7d9810d4dbe62700807128df4b96190c</sys_id>
             <sys_mod_count>8</sys_mod_count>
             <sys_name>u_action</sys_name>
             <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>

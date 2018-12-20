@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Slack Properties">b1733e2ddb8d3200378fd450cf96198f</category>
+        <order>145</order>
+        <property display_value="x_12684_slack_app.SlackUserPass" name="x_12684_slack_app.SlackUserPass">73b6b598dbea2700807128df4b9619ed</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-12-19 04:31:02</sys_created_on>
+        <sys_id>fce639d8dbea2700807128df4b961993</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_12684_slack_app.SlackUserPass.Slack Properties</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_fce639d8dbea2700807128df4b961993</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-12-19 04:31:07</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

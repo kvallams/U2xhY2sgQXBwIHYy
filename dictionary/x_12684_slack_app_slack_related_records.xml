@@ -14,6 +14,7 @@
         <element label="Approval record sys id" max_length="40" name="u_approval_record_sys_id" type="string"/>
         <element attributes="edge_encryption_enabled=true" label="Approval user" max_length="32" name="u_approved_by" reference="x_12684_slack_app_user_mapper" type="reference"/>
         <element label="Channel History Formatted" max_length="4000" name="u_channel_history_formatted" type="string"/>
+        <element label="Matching Condtion" max_length="32" name="u_matching_condtion" reference="x_12684_slack_app_condition_builder" type="reference"/>
         <element attributes="edge_encryption_enabled=true" label="Responded on" max_length="40" name="u_responded_on" type="glide_date_time"/>
         <element attributes="base_start=true,edge_encryption_enabled=true" label="Table" max_length="80" name="u_table" type="table_name"/>
         <element label="Ticket Sys ID" max_length="40" name="u_ticket_sys_id" type="string"/>
@@ -24,6 +25,9 @@
             </choice>
         </element>
         <index name="index">
+            <element name="u_matching_condtion"/>
+        </index>
+        <index name="index2">
             <element name="u_approved_by"/>
         </index>
     </element>

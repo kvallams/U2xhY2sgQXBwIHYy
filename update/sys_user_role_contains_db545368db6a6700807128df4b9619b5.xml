@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role_contains">
+    <sys_user_role_contains action="INSERT_OR_UPDATE">
+        <contains display_value="x_12684_slack_app.user" name="x_12684_slack_app.user">3a739328db6a6700807128df4b96193e</contains>
+        <role display_value="x_12684_slack_app.admin" name="x_12684_slack_app.admin">29f9fa58dbae2700807128df4b9619fc</role>
+        <sys_class_name>sys_user_role_contains</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-12-20 05:57:55</sys_created_on>
+        <sys_id>db545368db6a6700807128df4b9619b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_12684_slack_app.user.x_12684_slack_app.admin</sys_name>
+        <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+        <sys_update_name>sys_user_role_contains_db545368db6a6700807128df4b9619b5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-12-20 05:57:55</sys_updated_on>
+    </sys_user_role_contains>
+</record_update>

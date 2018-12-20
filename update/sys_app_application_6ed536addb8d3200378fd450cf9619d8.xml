@@ -7,22 +7,22 @@
         <hint/>
         <name/>
         <order>100</order>
-        <roles>admin</roles>
+        <roles>x_12684_slack_app.condition_builder_user,x_12684_slack_app.user_mapper_user,x_12684_slack_app.admin,x_12684_slack_app.user</roles>
         <sys_class_name>sys_app_application</sys_class_name>
         <sys_created_by>kvallams</sys_created_by>
         <sys_created_on>2017-02-20 04:11:35</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6ed536addb8d3200378fd450cf9619d8</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Slack App</sys_name>
         <sys_overrides/>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
         <sys_policy/>
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_app_application_6ed536addb8d3200378fd450cf9619d8</sys_update_name>
-        <sys_updated_by>kvallams</sys_updated_by>
-        <sys_updated_on>2017-02-20 04:11:35</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-12-20 05:57:26</sys_updated_on>
         <title>Slack App</title>
         <view_name/>
     </sys_app_application>

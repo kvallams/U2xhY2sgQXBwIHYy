@@ -18,14 +18,14 @@
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
-        <roles>admin</roles>
+        <roles>x_12684_slack_app.user</roles>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-06-17 19:31:05</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ae7ae463db133200378fd450cf96195a</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Slack Related Records</sys_name>
         <sys_overrides/>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
@@ -33,7 +33,7 @@
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_app_module_ae7ae463db133200378fd450cf96195a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-06-17 19:31:05</sys_updated_on>
+        <sys_updated_on>2018-12-20 05:56:38</sys_updated_on>
         <timeline_page/>
         <title>Slack Related Records</title>
         <uncancelable>false</uncancelable>

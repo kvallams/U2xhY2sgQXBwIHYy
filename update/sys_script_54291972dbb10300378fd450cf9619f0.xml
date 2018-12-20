@@ -37,9 +37,8 @@
 	var gr = new GlideRecord('sysapproval_approver');
 	gr.get('sys_id',current.u_approval_record_sys_id);
 	gr.state = current.u_approval_action;
-	gr.comments = current.u_approval_action.getDisplayValue()+' response received from approver through Slack on '+current.u_responded_on.getDisplayValue();
+	gr.comments = current.u_approval_action.getDisplayValue()+' response received from '+gr.approver.getDisplayValue()+' through Slack on '+current.u_responded_on.getDisplayValue();
 	gr.update();
-	
 
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -48,7 +47,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>54291972dbb10300378fd450cf9619f0</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>update response on sysapproval_approval</sys_name>
         <sys_overrides/>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
@@ -56,7 +55,7 @@
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_script_54291972dbb10300378fd450cf9619f0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-07 22:59:34</sys_updated_on>
+        <sys_updated_on>2018-12-20 02:52:20</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

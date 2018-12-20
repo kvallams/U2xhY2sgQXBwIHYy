@@ -38,7 +38,7 @@
 	var slackHelper = new x_12684_slack_app.SlackAppHelper();
 	var gr = new GlideRecord(current.u_table);
 	gr.get('sys_id',current.u_ticket_sys_id);
-	var message = slackHelper.generatePostMessage(gr,'approval');
+	var message = slackHelper.generatePostMessage(gr,current.u_matching_condtion.sys_id);
 	approvalAction.text = "Approval Request for: "+gr.number;
 	approvalAction.fallback = 'You are unable to approve please contact ServiceNow admins';
 	approvalAction.callback_id = current.u_approval_record_sys_id.toString();
@@ -65,7 +65,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8dba6707db010300378fd450cf96192a</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Push approvals to slack</sys_name>
         <sys_overrides/>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
@@ -73,7 +73,7 @@
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_script_8dba6707db010300378fd450cf96192a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-07 19:48:29</sys_updated_on>
+        <sys_updated_on>2018-12-20 08:47:32</sys_updated_on>
         <template/>
         <when>async</when>
     </sys_script>

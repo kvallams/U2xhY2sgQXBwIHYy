@@ -219,7 +219,7 @@
             <sys_update_name>sys_ui_list_sys_ui_policy_advanced</sys_update_name>
             <sys_updated_by>Kalyan.Vallamsetla@ucop.edu</sys_updated_by>
             <sys_updated_on>2018-01-26 02:15:54</sys_updated_on>
-            <sys_user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</sys_user>
+            <sys_user display_value="kalyan Vallamsetla">6816f79cc0a8016401c5a33be04be441</sys_user>
             <view display_value="Advanced" name="advanced">7966be310a0a0b8c00bd504090503227</view>
             <view_name/>
         </sys_ui_list>
