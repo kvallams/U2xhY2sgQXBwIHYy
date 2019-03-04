@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
     <sys_properties action="INSERT_OR_UPDATE">
         <choices/>
-        <description>Client secret key</description>
+        <description>Client secret key(Depricated)</description>
         <ignore_cache>false</ignore_cache>
-        <is_private>false</is_private>
+        <is_private>true</is_private>
         <name>x_12684_slack_app.slack.client.secret</name>
         <read_roles/>
         <suffix>slack.client.secret</suffix>
@@ -11,16 +11,16 @@
         <sys_created_by>kvallams</sys_created_by>
         <sys_created_on>2017-02-20 04:02:46</sys_created_on>
         <sys_id>22b3326ddb8d3200378fd450cf9619c8</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>x_12684_slack_app.slack.client.secret</sys_name>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
         <sys_policy/>
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_properties_22b3326ddb8d3200378fd450cf9619c8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-12-18 21:44:01</sys_updated_on>
+        <sys_updated_on>2019-03-04 22:50:58</sys_updated_on>
         <type>password2</type>
-        <value>{{gpaes}}6u4wdairfJCA9fPXCqHc7D4DizeAhTRIW0cUdPLrMQ1uSOuV+WR0faIGaNqRqf6H</value>
+        <value>{{gpaes}}aBRFwpd+9Mx9YuCsjTsPOUDl8pwKCjU8iaveu3R2b4M8fAcF2OYibfBOj01vV7bs</value>
         <write_roles/>
     </sys_properties>
     <sys_translated_text action="delete_multiple" query="documentkey=22b3326ddb8d3200378fd450cf9619c8"/>

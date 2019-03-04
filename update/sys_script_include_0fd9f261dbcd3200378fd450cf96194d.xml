@@ -13,7 +13,7 @@ SlackAppHelper.prototype = {
 	_snow_user_pass:'',
 	json:'',
 	arrayUtil:'',
-	logger:[],
+	logger:{},
 	initialize: function() {
 		this._endpoint = gs.getProperty('glide.servlet.uri')+'api/now/table/';
 		this.json = (function(){
@@ -41,6 +41,7 @@ SlackAppHelper.prototype = {
 	and auto getrates a rest call to authenticate the app, this is only need for retrieving
 	ticket information from Slack
  	*/
+	//below method has been deprecated please do not use
 	configureApp: function(){
 		var oauthProviderReqBody = {
 			client_id:gs.getProperty('x_12684_slack_app.slack.client.id'),
@@ -72,7 +73,7 @@ SlackAppHelper.prototype = {
 			oauth2_profile:respOauthEntityProfile.result[0].sys_id
 		};
 		var respRestMessage = this.json.decode(this._restCaller(this._endpoint+'sys_rest_message?sysparam_fields=sys_id','POST',restMessageReqBody));
-		this.logger.push('\nSlack APP configuration complete');
+		//this.logger.push('\nSlack APP configuration complete');
 	},
 	/*
 	Parse interactive messages responses and take necessary actions within the system and post the details back to the channel.
@@ -82,9 +83,10 @@ SlackAppHelper.prototype = {
 			text: "",
 			attachments: []
 		};
-		this.logger.push('\nSlackAppHelper::inside interactiveMessageRespParser');
+		this.logger['interactiveMessageRespParser'] = [];
+		this.logger['interactiveMessageRespParser'].push('SlackAppHelper::InteractiveMessageRespParser Begin');
 		var gr = new GlideRecord('x_12684_slack_app_slack_related_records');
-		this.logger.push('\nSlackAppHelper::callback_id::'+interactiveMsgResp.callback_id);
+		//this.logger.push('\nSlackAppHelper::callback_id::'+interactiveMsgResp.callback_id);
 		gr.get('u_approval_record_sys_id',interactiveMsgResp.callback_id);
 		var gdt = new GlideDateTime();
 		gdt.setValue(interactiveMsgResp.action_ts*1000);
@@ -94,6 +96,7 @@ SlackAppHelper.prototype = {
 		gr.u_approval_action = interactiveMsgResp.actions[0].value;
 		gr.update();
 		responseBody.text = 'Thank you for your approval, your response has been logged in ServiceNow!';
+		this.logger['interactiveMessageRespParser'].push('SlackAppHelper::InteractiveMessageRespParser Completed'+this.json.encode(responseBody));
 		return responseBody;
 	},
 	/*
@@ -101,6 +104,8 @@ SlackAppHelper.prototype = {
 	and take necessary action and post the details to slack
  	*/
 	reqParser: function(reqParams){
+		this.logger['reqParser'] = [];
+		this.logger['reqParser'].push('SlackAppHelper::reqParser Begin');
 		var reqObj={};
 			var text =  reqParams.text.toString().trim();
 			//check if the operation is match
@@ -115,7 +120,7 @@ SlackAppHelper.prototype = {
 				reqObj.operation = 'update';
 				reqObj.ticket = text.match(/(INC|CHG|TASK|CHGTASK|RITM)(?:\d)+/g).toString();
 				reqObj.fieldInfo = text.match(/(?:\w)+=(?:\w|\s|\.)+(?=\s)/g);
-				gs.debug('********'+reqObj.fieldInfo.join());
+				gs.debug('Request Parser::'+reqObj.fieldInfo.join());
 				reqObj.user = (function(){
 					var slack_user_mapper_gr = new GlideRecord('x_12684_slack_app_user_mapper');
 					slack_user_mapper_gr.addEncodedQuery('u_slack_user_id='+reqParams.user_id);
@@ -130,12 +135,15 @@ SlackAppHelper.prototype = {
 			else{
 				reqObj.operation = 'error';
 			}
+			this.logger['reqParser'].push('SlackAppHelper::reqParser Completed'+this.json.encode(reqObj));
 			return this._reqHandler(reqObj);
 		},
 		/*
 		Private Function to handle requests
  		*/
 		_reqHandler:function(reqObj){
+			this.logger['_reqHandler'] = [];
+			this.logger['_reqHandler'].push('SlackAppHelper::_reqHandler Begin');
 			var responseBody = {
 				text: "",
 				attachments: []
@@ -155,7 +163,6 @@ SlackAppHelper.prototype = {
 					for(var key in ticketInfo.result[0]){
 						responseBody.attachments.push(new this._createObj(key+': '+ticketInfo.result[0][key]));
 					}
-					this.logger.push('\nSlackAppHelper::'+this._printObj(ticketInfo));
 				}
 				catch (ex) {
 					responseBody.attachments.push(new this._createObj('Error'+': '+'Oops! something went wrong, Please contact ServiceNow admins'));
@@ -163,9 +170,7 @@ SlackAppHelper.prototype = {
 				}
 			}
 			// update operation to update ticket
-			this.logger.push('\nSlackAppHelper::inside update operation'+reqObj.operation);
 			if(reqObj.operation == 'update'){
-				this.logger.push('\nSlackAppHelper::inside update operation');
 				var ticket_sys_id;
 				try{
 					ticket_sys_id = this.json.decode(this._restCaller(this._endpoint+'task?sysparm_query=number%3D'+reqObj.ticket+'&sysparm_display_value=true&sysparm_exclude_reference_link=true&sysparm_fields=sys_id&sysparm_limit=1','GET','')).result[0].sys_id;
@@ -173,19 +178,15 @@ SlackAppHelper.prototype = {
 				catch(ex){
 					gs.error("SlackAppHelper::There was an error retreving ticket information", ex);
 				}
-				this.logger.push('\nSlackAppHelper::ticket_sys_id'+ticket_sys_id);
 				if(ticket_sys_id){
-					this.logger.push('\nSlackAppHelper::fieldinfo::'+reqObj.fieldInfo.join());
 					var requestBody={};
 						for(var i=0;i<reqObj.fieldInfo.length;i++){
 							var keyValue = reqObj.fieldInfo[i].split('=');
-							this.logger.push('\nSlackAppHelper::'+keyValue[0]+'::'+keyValue[1]);
 							requestBody[keyValue[0]] = keyValue[1];
 						}
 						requestBody['comments'] =  (requestBody['comments'] || '')+ '\n Below fields have been updated  by the user: '+reqObj.user+' \n'+this.json.encode(requestBody);
 						//rest call to update a ticket
 						var requestBodyString = this.json.encode(requestBody);
-						this.logger.push('\nSlackAppHelper::RequestBody::'+requestBodyString);					this._restCaller(this._endpoint+'task/'+ticket_sys_id,'PUT',requestBodyString);
 						responseBody.text = 'Details of Ticket: '+reqObj.ticket;
 						responseBody.attachments.push(new this._createObj('Ticket has been updated!'));
 					}
@@ -197,11 +198,15 @@ SlackAppHelper.prototype = {
 				if(reqObj.operation == 'error'){
 					responseBody.attachments.push(new this._createObj('Error'+': '+'Oops! Please check the syntax use -help to check the guide'));
 				}
+				this.logger['_reqHandler'].push('SlackAppHelper::_reqHandler Complete:'+this.json.encode(responseBody));
+				gs.debug(this.json.encode(this.logger));
 				return responseBody;
 				
 			},
 			//This function will make a rest call to create a channel with ticket number as channel name
 			createChannel: function(current,action_sys_id){
+				this.logger['createChannel'] = [];
+				this.logger['createChannel'].push('SlackAppHelper::createChannel Begin');
 				try {
 					var r = new sn_ws.RESTMessageV2('x_12684_slack_app.Slack Web API', 'Create private channel');
 					r.setQueryParameter('name',gs.getProperty('instance_name').toLowerCase()+'-'+current.getDisplayValue().toLowerCase());//.toString()+
@@ -209,15 +214,11 @@ SlackAppHelper.prototype = {
 					r.setQueryParameter('is_private', true);
 					var user_list = this.getUsersList(current,action_sys_id);
 					r.setQueryParameter('user_ids', user_list.join());
-					/*for(var u=0;u<user_list.length;u++){
-						this.inviteToGroup(respBodyObj.group.id,user_list[u]);
-					}*/
 					var response = r.execute();
-					this.logger.push('\nSlackAppHelper::Slack Integration Creating Channel');
 					var responseBody = response.getBody();
 					var httpStatus = response.getStatusCode();
 					var respBodyObj = this.json.decode(responseBody);
-					this.logger.push('\nSlackAppHelper::responseBody'+responseBody);
+					this.logger['createChannel'].push('SlackAppHelper::responseBody'+responseBody);
 					if(respBodyObj.channel.id){
 						var gr = new GlideRecord('x_12684_slack_app_slack_related_records');
 						gr.task = current.number;
@@ -235,8 +236,7 @@ SlackAppHelper.prototype = {
 						var response_set_purpose = r_set_purpose.execute();
 						var responseBody_set_purpose = response_set_purpose.getBody();
 						var httpStatus_set_purpose = response_set_purpose.getStatusCode();
-						this.logger.push('\nSlackAppHelper::responseBody_set_purpose'+responseBody_set_purpose);
-						//gs.info('SlackAppHelper::httpStatus_set_purpose::'+httpStatus_set_purpose);
+						this.logger['createChannel'].push('SlackAppHelper::Setting Purpose of Channel'+this.json.encode(response_set_purpose));
 						//generate message to be posted on to the channel
 						var message  = this.generatePostMessage(current,action_sys_id);
 						//post the message on to the channel respBodyObj.group.id
@@ -245,7 +245,7 @@ SlackAppHelper.prototype = {
 					else{
 						gs.addInfoMessage('Private Slack channel exists:'+respBodyObj.channel.id);
 					}
-					this.logger.push('\nSlackAppHelper::Slack Integration Create Channel response::'+responseBody);
+					this.logger['createChannel'].push('SlackAppHelper::createChannel::Completed');
 				}
 				catch(ex) {
 					gs.error("SlackAppHelper::There was an error in creating channel", ex);
@@ -253,16 +253,16 @@ SlackAppHelper.prototype = {
 			},
 			//This function will close the channel based on the conditions specified in the condition builder
 			closeChannel: function(current,slack_group_gr,action_sys_id){
+				this.logger['closeChannel'] = [];
+				this.logger['closeChannel'].push('SlackAppHelper::closeChannel Begin');
 				try {
-					
-					this.logger.push('\nSlackAppHelper::Ticket Resolved::Retreiving channel history;');
 					var q = new sn_ws.RESTMessageV2('x_12684_slack_app.Slack Web API', 'Get channel history');
 					q.setQueryParameter('channel',slack_group_gr.slack_group_id);
 					q.setQueryParameter('token', gs.getProperty('x_12684_slack_app.authentication_token'));
 					var response3 = q.execute();
 					var responseBody3 = this.json.decode(response3.getBody());
 					var httpStatus3 = response3.getStatusCode();
-					this.logger.push('\nSlackAppHelper::messages length::'+response3.getBody());
+					this.logger['closeChannel'].push('SlackAppHelper::Retrive Channel History::'+response3.getBody());
 					if(responseBody3.messages.length>0){
 						slack_group_gr.channel_history = this.json.encode(responseBody3.messages);
 						slack_group_gr.active = false;
@@ -277,14 +277,13 @@ SlackAppHelper.prototype = {
 				}
 				
 				try {
-					this.logger.push('\nSlackAppHelper::Closing private channel');
 					var r2 = new sn_ws.RESTMessageV2('x_12684_slack_app.Slack Web API', 'Close a private channel');
 					r2.setQueryParameter('channel',slack_group_gr.slack_group_id);
 					r2.setQueryParameter('token', gs.getProperty('x_12684_slack_app.authentication_token'));
 					var response2 = r2.execute();
 					var responseBody2 = response2.getBody();
 					var httpStatus2 = response2.getStatusCode();
-					this.logger.push('\nSlackAppHelper::Response2::'+responseBody2);
+					this.logger['closeChannel'].push('SlackAppHelper::closeChannel end:'+responseBody2);
 				}
 				catch(ex) {
 					gs.error("SlackAppHelper::There was an error in closing channel", ex);
@@ -292,6 +291,8 @@ SlackAppHelper.prototype = {
 			},
 			//post message on to the channel
 			postMessage: function(post_message,group_id){
+				this.logger['postMessage'] =[];
+				this.logger['postMessage'].push('SlackAppHelper::postMessage begin');
 				try{
 					var r_post_message = new sn_ws.RESTMessageV2('x_12684_slack_app.Slack Web API','Post ticket details to channel');
 					r_post_message.setQueryParameter('channel',group_id);
@@ -301,7 +302,7 @@ SlackAppHelper.prototype = {
 					var response_post_message = r_post_message.execute();
 					var responseBody_post_message = response_post_message.getBody();
 					var httpStatus_post_message = response_post_message.getStatusCode();
-					this.logger.push('\nSlackAppHelper::response_post_message::'+responseBody_post_message);
+					this.logger['postMessage'].push('nSlackAppHelper::postMessage::'+responseBody_post_message);
 				}
 				catch(ex){
 					gs.error('SlackHelper::error in posting message to slack::'+ex);
@@ -310,6 +311,7 @@ SlackAppHelper.prototype = {
 			},
 			//generate post message to be posted on to the channel with ticket details
 			generatePostMessage: function(current,action){
+				this.logger['generatePostMessage'] =['SlackAppHelper::generatePostMessage begin'];
 				var column_list = [];
 				var post_message = {
 					text: "",
@@ -318,13 +320,10 @@ SlackAppHelper.prototype = {
 				post_message.text = 'Details of Ticket: '+current.number.toString();
 				var gr_post_message =  new GlideRecord('x_12684_slack_app_condition_builder');
 				gr_post_message.addEncodedQuery('sys_id='+action);
-				//table=incident^u_action=create_channel
 				gr_post_message.query();
 				if(gr_post_message.next()){
 					column_list = gr_post_message.u_fields_to_be_added_to_channel.split(',');
-					this.logger.push('\nSlackAppHelper::fields to be added::'+gr_post_message.u_fields_to_be_added_to_channel);
 				}
-				this.logger.push('\nSlackAppHelper::Column List::'+column_list.join());
 				for(var i = 0;i<column_list.length;i++){
 					try{
 						post_message.attachments.push(new this._createObj(current.getElement(column_list[i]).getLabel()+': '+current[column_list[i].toString()].getDisplayValue()));
@@ -334,6 +333,7 @@ SlackAppHelper.prototype = {
 					}
 					
 				}
+				this.logger['generatePostMessage'].push('SlackAppHelper::generatePostMessage complete:'+this.json.encode(post_message));
 				return post_message;
 			},
 			//check if a Slack channel already exists for current record
@@ -363,13 +363,13 @@ SlackAppHelper.prototype = {
 							'condition':gr.getValue('u_conditions')
 						});
 					}
-					this.logger.push('\nSlackAppHelper::close condition::'+current.number+'::'+this.json.encode(result));
+					this.logger['getConditions']=['SlackAppHelper::conditions::'+current.number+'::'+this.json.encode(result)];
 					return result;
 				},
 				//Retrieves list of slack user id to be invited to a channel being created
 				getUsersList: function(current,action_sys_id){
+					this.logger['getUsersList']=['SlackHelper::getUsersList begin'];
 					try{
-						this.logger.push('\nSlackHelper::gaterting invitees to invite to group');
 						var user_group_list=[];//list of groups,users and user emails
 						var user_list=[];
 						var slack_user_id_list=[];
@@ -410,7 +410,7 @@ SlackAppHelper.prototype = {
 						//identifing email id's of users who do not exist in servicenow
 						//missing_snow_user_email_list list will containg group sys_id's as well however no user will be found in slack
 						missing_snow_user_email_list = this.arrayUtil.diff(user_group_list,user_list).join().split(',');
-						this.logger.push('\nSlackAppHelper::getUserList::missing_snow_user_email_list'+missing_snow_user_email_list);
+						this.logger['getUsersList'].push('SlackAppHelper::getUserList::missing_snow_user_email_list'+missing_snow_user_email_list);
 						//get assigned to of all child tasks
 						if(gr_condition.u_additional_invitees){
 							var gr_task = new GlideRecord('task');
@@ -422,7 +422,7 @@ SlackAppHelper.prototype = {
 								}
 							}
 						}
-						this.logger.push('\nSlackAppHelper::getUserList::user_list'+user_list.join());
+						this.logger['getUsersList'].push('SlackAppHelper::getUserList::user_list'+user_list.join());
 						//get slack user id's for all the users
 						var available_slack_users=[];
 						var gr_slack_user_mapper = new GlideRecord('x_12684_slack_app_user_mapper');
@@ -442,7 +442,7 @@ SlackAppHelper.prototype = {
 							while(user_gr.next()){
 								missing_user_email_list.push(user_gr.getDisplayValue('email'));
 							}
-							this.logger.push('\nSlackAppHelper::List of slack user ids being invited to group::missing_user_email_list'+missing_user_email_list);
+							this.logger['getUsersList'].push('SlackAppHelper::Invitees::missing_user_email_list'+missing_user_email_list);
 							for(var z=0;z<missing_user_email_list.length;z++){
 								var slackId = this.getSlackUserByEmail(missing_user_email_list[z]);
 								if(slackId != 'user_not_found'){
@@ -459,7 +459,7 @@ SlackAppHelper.prototype = {
 								}
 							}
 						}
-						this.logger.push('\nSlackAppHelper::List of slack user ids being invited to group'+slack_user_id_list.join());
+						this.logger['getUsersList'].push('SlackAppHelper::Invitees invited::'+slack_user_id_list.join());
 						return slack_user_id_list;
 					}
 					catch(ex){
@@ -476,7 +476,7 @@ SlackAppHelper.prototype = {
 						var response_grp = r3.execute();
 						var responseBody_grp = response_grp.getBody();
 						var httpStatus_grp = response_grp.getStatusCode();
-						this.logger.push('\nSlackAppHelper::inviteToGroup::responseBody_grp::'+responseBody_grp);
+						this.logger['inviteToGroup']= ['SlackAppHelper::inviteToGroup::responseBody_grp::'+responseBody_grp];
 					}
 					catch(ex) {
 						gs.error("SlackAppHelper::There was an error in inviting user to group::"+ ex);
@@ -489,10 +489,9 @@ SlackAppHelper.prototype = {
 						r4.setQueryParameter('token', gs.getProperty('x_12684_slack_app.authentication_token'));
 						r4.setQueryParameter('email',user_email);
 						var response_user_email = r4.execute();
-						this.logger.push('\nSlackAppHelper::getSlackUserByEmail::Response::response_user_email_body::'+'email::'+user_email+'::'+response_user_email.getBody());
+						this.logger['getSlackUserByEmail']=['SlackAppHelper::response_user_email_body::'+'email::'+user_email+'::'+response_user_email.getBody()];
 						var responseBody_user_email = this.json.decode(response_user_email.getBody());
 						var httpStatus_user_email = response_user_email.getStatusCode();
-						this.logger.push('\nSlackAppHelper::getSlackUserByEmail::Response::OK'+responseBody_user_email.ok);
 						if(responseBody_user_email.ok){
 							var final_member = responseBody_user_email.user;
 							var gr_mapper_imp = new GlideRecord('x_12684_slack_app_slack_user_mapper_importset');
@@ -504,7 +503,7 @@ SlackAppHelper.prototype = {
 							return gr_mapper_imp.u_id;
 						}
 						else{
-							gs.error('SlackAppHelper::There was an error in retrieving user by email::'+user_email+'::'+responseBody_user_email.error);
+							this.logger['getSlackUserByEmail'].push('SlackAppHelper::error::user_by_email'+user_email+'::'+responseBody_user_email.error);
 							return "user_not_found";
 						}
 						
@@ -525,7 +524,7 @@ SlackAppHelper.prototype = {
 						var response_sync_r = sync_r.execute();
 						var responseBody_sync_r = response_sync_r.getBody();
 						var httpStatus_sync_r = response_sync_r.getStatusCode();
-						this.logger.push('\nSlackHelper::responseBody_sync_r::'+responseBody_sync_r);
+						//this.logger.push('\nSlackHelper::responseBody_sync_r::'+responseBody_sync_r);
 						return responseBody_sync_r;
 						
 					}
@@ -540,19 +539,13 @@ SlackAppHelper.prototype = {
 					request.setHttpMethod(method);
 					var user = this._snow_user_id;
 					var password = this._snow_user_pass;
-					this.logger.push(user+'::'+password);
 					request.setBasicAuth(user,password);
 					request.setRequestHeader("Accept","application/json");
 					request.setRequestHeader('Content-Type','application/json');
 					if(requestBody != ''){
 						request.setRequestBody(requestBody);
 					}
-					this.logger.push(request.getRequestBody());
 					var response = request.execute();
-					this.logger.push(response.getStatusCode());
-					this.logger.push(response.getErrorCode());
-					this.logger.push(response.getErrorMessage());
-					this.logger.push(response.getBody());
 					gs.debug(this.logger.join());
 					return response.getBody();
 				},
@@ -564,7 +557,7 @@ SlackAppHelper.prototype = {
 					for(var key in obj){
 						result=result+','+key+'::'+obj[key];
 					}
-					this.logger.push(result);
+					//this.logger.push(result);
 				},
 				
 				type: 'SlackAppHelper'
@@ -573,13 +566,13 @@ SlackAppHelper.prototype = {
         <sys_created_by>kvallams</sys_created_by>
         <sys_created_on>2017-02-20 04:29:52</sys_created_on>
         <sys_id>0fd9f261dbcd3200378fd450cf96194d</sys_id>
-        <sys_mod_count>251</sys_mod_count>
+        <sys_mod_count>262</sys_mod_count>
         <sys_name>SlackAppHelper</sys_name>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_script_include_0fd9f261dbcd3200378fd450cf96194d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-12-21 02:28:32</sys_updated_on>
+        <sys_updated_on>2019-03-04 21:43:13</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -2,6 +2,7 @@
     <oauth_entity_profile action="INSERT_OR_UPDATE">
         <default>true</default>
         <grant_type>client_credentials</grant_type>
+        <jwt_provider/>
         <name>Slack App default_profile</name>
         <oauth_entity display_value="Slack App">d948f83cdb300300378fd450cf961920</oauth_entity>
         <sys_class_name>oauth_entity_profile</sys_class_name>

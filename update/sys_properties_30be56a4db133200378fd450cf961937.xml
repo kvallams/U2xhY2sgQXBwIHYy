@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
     <sys_properties action="INSERT_OR_UPDATE">
         <choices/>
-        <description>Slack App access token used to authenticate ServiceNow, Usually Slack admins can generate an authentication token and use it for integration purpose.&#13;
-If a Slack Application is being used use the application access token. </description>
+        <description>Slack App access token used to authenticate ServiceNow, Usually Slack admins can generate an authentication token and use it for integration purpose.If a Slack Application is being used use the application access token or create an integration user account in slack and use the user access token.</description>
         <ignore_cache>false</ignore_cache>
-        <is_private>false</is_private>
+        <is_private>true</is_private>
         <name>x_12684_slack_app.authentication_token</name>
         <read_roles/>
         <suffix>authentication_token</suffix>
@@ -12,17 +11,17 @@ If a Slack Application is being used use the application access token. </descrip
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-06-08 20:18:58</sys_created_on>
         <sys_id>30be56a4db133200378fd450cf961937</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>x_12684_slack_app.authentication_token</sys_name>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
         <sys_policy/>
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_properties_30be56a4db133200378fd450cf961937</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-12-18 22:27:45</sys_updated_on>
+        <sys_updated_on>2019-03-04 22:48:03</sys_updated_on>
         <type>password2</type>
-        <value>{{dflt-gpaes}}dlggbBk24D19+qihAT2A9InXJENrRvUCubIxQNhLP1nJwoVAHlXSqwYHgRm5oJODCHLEEYUTVOHO&#13;
-LHm5VRlS57abt6ZTh4IcmLO1F4i3kcw=</value>
+        <value>{{dflt-gpaes}}knCNQUcDLaIzF3NvfYjUB1XcRq7Sj0dFBXrJrq2k9U3tSiVbcivRdrSKiPb+XwAnVt9cwleH9EFO&#13;
+s8vhXbvLegl2invU/3wKK70k2JedJHQ=</value>
         <write_roles/>
     </sys_properties>
     <sys_translated_text action="delete_multiple" query="documentkey=30be56a4db133200378fd450cf961937"/>

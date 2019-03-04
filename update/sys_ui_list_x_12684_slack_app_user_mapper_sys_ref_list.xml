@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>u_user</element>
-            <list_id display_value="x_12684_slack_app_user_mapper" element="NULL" name="x_12684_slack_app_user_mapper" parent="NULL" relationship="NULL" sys_domain="global" view="1f272152bc002300aadb875973a34b56">b3ed1339db850300378fd450cf9619b0</list_id>
+            <list_id display_value="x_12684_slack_app_user_mapper" element="NULL" name="x_12684_slack_app_user_mapper" parent="NULL" relationship="NULL" sys_domain="global" view="c27c307365022300aadb05e0fb3edf52">b3ed1339db850300378fd450cf9619b0</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -18,7 +18,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>u_slack_user_name</element>
-            <list_id display_value="x_12684_slack_app_user_mapper" element="NULL" name="x_12684_slack_app_user_mapper" parent="NULL" relationship="NULL" sys_domain="global" view="1f272152bc002300aadb875973a34b56">b3ed1339db850300378fd450cf9619b0</list_id>
+            <list_id display_value="x_12684_slack_app_user_mapper" element="NULL" name="x_12684_slack_app_user_mapper" parent="NULL" relationship="NULL" sys_domain="global" view="c27c307365022300aadb05e0fb3edf52">b3ed1339db850300378fd450cf9619b0</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -33,7 +33,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>u_slack_user_id</element>
-            <list_id display_value="x_12684_slack_app_user_mapper" element="NULL" name="x_12684_slack_app_user_mapper" parent="NULL" relationship="NULL" sys_domain="global" view="1f272152bc002300aadb875973a34b56">b3ed1339db850300378fd450cf9619b0</list_id>
+            <list_id display_value="x_12684_slack_app_user_mapper" element="NULL" name="x_12684_slack_app_user_mapper" parent="NULL" relationship="NULL" sys_domain="global" view="c27c307365022300aadb05e0fb3edf52">b3ed1339db850300378fd450cf9619b0</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
@@ -70,7 +70,7 @@
             <sys_updated_by>Kalyan.Vallamsetla@ucop.edu</sys_updated_by>
             <sys_updated_on>2018-01-26 02:15:54</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">1f272152bc002300aadb875973a34b56</view>
+            <view display_value="Reference List" name="sys_ref_list">c27c307365022300aadb05e0fb3edf52</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

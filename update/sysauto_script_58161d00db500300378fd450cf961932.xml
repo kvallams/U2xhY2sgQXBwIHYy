@@ -4,7 +4,7 @@
         <condition/>
         <conditional>false</conditional>
         <name>Sync Slack Users with ServiceNow user profiles</name>
-        <run_as display_value="kalyan Vallamsetla">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as display_value="Kalyan Vallamsetla">6816f79cc0a8016401c5a33be04be441</run_as>
         <run_as_tz/>
         <run_dayofmonth>1</run_dayofmonth>
         <run_dayofweek>1</run_dayofweek>
