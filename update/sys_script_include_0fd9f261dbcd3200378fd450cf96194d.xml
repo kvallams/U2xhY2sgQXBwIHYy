@@ -3,6 +3,7 @@
         <access>public</access>
         <active>true</active>
         <api_name>x_12684_slack_app.SlackAppHelper</api_name>
+        <caller_access/>
         <client_callable>false</client_callable>
         <description>Helper class for operations associated with Slack App</description>
         <name>SlackAppHelper</name>
@@ -213,7 +214,7 @@ SlackAppHelper.prototype = {
 					r.setQueryParameter('token', gs.getProperty('x_12684_slack_app.authentication_token'));
 					r.setQueryParameter('is_private', true);
 					var user_list = this.getUsersList(current,action_sys_id);
-					r.setQueryParameter('user_ids', user_list.join());
+					//r.setQueryParameter('user_ids', user_list.join());
 					var response = r.execute();
 					var responseBody = response.getBody();
 					var httpStatus = response.getStatusCode();
@@ -241,6 +242,8 @@ SlackAppHelper.prototype = {
 						var message  = this.generatePostMessage(current,action_sys_id);
 						//post the message on to the channel respBodyObj.group.id
 						this.postMessage(message,respBodyObj.channel.id);
+						//inviting users to channel
+						this.inviteToGroup(respBodyObj.channel.id,user_list);
 					}
 					else{
 						gs.addInfoMessage('Private Slack channel exists:'+respBodyObj.channel.id);
@@ -566,13 +569,13 @@ SlackAppHelper.prototype = {
         <sys_created_by>kvallams</sys_created_by>
         <sys_created_on>2017-02-20 04:29:52</sys_created_on>
         <sys_id>0fd9f261dbcd3200378fd450cf96194d</sys_id>
-        <sys_mod_count>262</sys_mod_count>
+        <sys_mod_count>263</sys_mod_count>
         <sys_name>SlackAppHelper</sys_name>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_script_include_0fd9f261dbcd3200378fd450cf96194d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-03-04 21:43:13</sys_updated_on>
+        <sys_updated_on>2019-03-13 22:29:34</sys_updated_on>
     </sys_script_include>
 </record_update>
