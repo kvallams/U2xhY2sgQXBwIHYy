@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="message" label="Message" language="en" table="x_12684_slack_app_condition_builder">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>message</element>
+            <help/>
+            <hint/>
+            <label>Message</label>
+            <language>en</language>
+            <name>x_12684_slack_app_condition_builder</name>
+            <plural>Messages</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-03-14 20:03:33</sys_created_on>
+            <sys_id>217b7ef3db403300807128df4b9619e9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Message</sys_name>
+            <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
+            <sys_update_name>sys_documentation_x_12684_slack_app_condition_builder_message_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-03-14 20:03:33</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element label="Condition builder" max_length="40" name="x_12684_slack_app_condition_builder" type="collection">
+        <element label="Message" max_length="4000" name="message" type="string"/>
         <element attributes="base_start=true,edge_encryption_enabled=true" label="Table" mandatory="true" max_length="80" name="table" type="table_name"/>
         <element choice="1" label="Action" mandatory="true" max_length="40" name="u_action" type="string">
             <choice>

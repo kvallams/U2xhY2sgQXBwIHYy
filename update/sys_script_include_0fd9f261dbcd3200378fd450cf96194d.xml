@@ -320,13 +320,17 @@ SlackAppHelper.prototype = {
 					text: "",
 					attachments: []
 				};
-				post_message.text = 'Details of Ticket: '+current.number.toString();
+				
 				var gr_post_message =  new GlideRecord('x_12684_slack_app_condition_builder');
 				gr_post_message.addEncodedQuery('sys_id='+action);
 				gr_post_message.query();
 				if(gr_post_message.next()){
 					column_list = gr_post_message.u_fields_to_be_added_to_channel.split(',');
 				}
+				
+				post_message.text = 'Details of Ticket: '+current.number.toString();
+				if(gr_post_message.getValue('message'))
+						post_message.attachments.push(new this._createObj('Info: '+gr_post_message.getValue('message')));
 				for(var i = 0;i<column_list.length;i++){
 					try{
 						post_message.attachments.push(new this._createObj(current.getElement(column_list[i]).getLabel()+': '+current[column_list[i].toString()].getDisplayValue()));
@@ -336,6 +340,7 @@ SlackAppHelper.prototype = {
 					}
 					
 				}
+				
 				this.logger['generatePostMessage'].push('SlackAppHelper::generatePostMessage complete:'+this.json.encode(post_message));
 				return post_message;
 			},
@@ -475,7 +480,7 @@ SlackAppHelper.prototype = {
 						var r3 = new sn_ws.RESTMessageV2('x_12684_slack_app.Slack Web API', 'Invite to group');
 						r3.setQueryParameter('token', gs.getProperty('x_12684_slack_app.authentication_token'));
 						r3.setQueryParameter('channel',group_id);
-						r3.setQueryParameter('user',users);
+						r3.setQueryParameter('users',users);
 						var response_grp = r3.execute();
 						var responseBody_grp = response_grp.getBody();
 						var httpStatus_grp = response_grp.getStatusCode();
@@ -569,13 +574,13 @@ SlackAppHelper.prototype = {
         <sys_created_by>kvallams</sys_created_by>
         <sys_created_on>2017-02-20 04:29:52</sys_created_on>
         <sys_id>0fd9f261dbcd3200378fd450cf96194d</sys_id>
-        <sys_mod_count>264</sys_mod_count>
+        <sys_mod_count>272</sys_mod_count>
         <sys_name>SlackAppHelper</sys_name>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_script_include_0fd9f261dbcd3200378fd450cf96194d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-03-13 23:11:08</sys_updated_on>
+        <sys_updated_on>2019-03-14 20:30:42</sys_updated_on>
     </sys_script_include>
 </record_update>
