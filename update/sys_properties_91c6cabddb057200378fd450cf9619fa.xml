@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
     <sys_properties action="INSERT_OR_UPDATE">
         <choices/>
-        <description>Slack app token used by ServiceNow App to validate a request from Slack</description>
+        <description>Slack app token used by ServiceNow App to validate a request from Slack. This will be your verification token under Settings &gt; Basic Information on Slack App</description>
         <ignore_cache>false</ignore_cache>
         <is_private>true</is_private>
         <name>x_12684_slack_app.command.token</name>
@@ -11,14 +11,14 @@
         <sys_created_by>kvallams</sys_created_by>
         <sys_created_on>2017-02-20 19:24:50</sys_created_on>
         <sys_id>91c6cabddb057200378fd450cf9619fa</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>x_12684_slack_app.command.token</sys_name>
         <sys_package display_value="Slack App" source="x_12684_slack_app">3482f625db8d3200378fd450cf9619a0</sys_package>
         <sys_policy/>
         <sys_scope display_value="Slack App">3482f625db8d3200378fd450cf9619a0</sys_scope>
         <sys_update_name>sys_properties_91c6cabddb057200378fd450cf9619fa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-02-26 21:05:47</sys_updated_on>
+        <sys_updated_on>2019-03-27 06:10:31</sys_updated_on>
         <type>password2</type>
         <value>{{gpaes}}Q9tH77Yyx+lmxtnaguQcj707MJwq7TsgtU/keld19lg=</value>
         <write_roles/>
